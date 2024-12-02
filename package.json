@@ -1,7 +1,7 @@
 {
-  "name": "hono-test-api",
+  "name": "coolify-docker-test-nodejs-api",
   "version": "0.1.0",
-  "description": "A test API project using Hono framework",
+  "description": "A test API project using Hono framework to verify Docker deployment on Coolify platform",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -12,7 +12,11 @@
   "keywords": [
     "hono",
     "api",
-    "test"
+    "test",
+    "coolify",
+    "docker",
+    "container",
+    "deployment"
   ],
   "author": "",
   "license": "ISC",
