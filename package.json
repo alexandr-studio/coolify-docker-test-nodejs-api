@@ -1,0 +1,23 @@
+{
+  "name": "hono-test-api",
+  "version": "0.1.0",
+  "description": "A test API project using Hono framework",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hono",
+    "api",
+    "test"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hono": "^4.0.1",
+    "@hono/node-server": "^1.2.3"
+  }
+}
