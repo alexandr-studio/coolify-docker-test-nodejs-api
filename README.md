@@ -45,65 +45,44 @@ The API will be available at `http://localhost:3000`
 
 ## Docker Instructions
 
-### Building the Docker Image
+### Building Docker Images
 
-1. Build the image locally:
-   ```bash
-   docker build -t coolify-docker-test-nodejs-api .
-   ```
+To build for a specific architecture:
 
-2. Run the container:
-   ```bash
-   docker run -p 3000:3000 coolify-docker-test-nodejs-api
-   ```
+```bash
+# For ARM64 (e.g., Apple Silicon M1/M2)
+docker build -t coolify-docker-test-nodejs-api:arm64 .
+
+# For AMD64 (Intel/AMD processors)
+docker build --platform linux/amd64 -t coolify-docker-test-nodejs-api:amd64 .
+```
 
 ### Publishing to Docker Hub
 
-1. Build your image with version (for x86/amd64 platforms):
-   ```bash
-   # For x86/amd64 platforms (most cloud providers)
-   docker build --platform=linux/amd64 -t coolify-docker-test-nodejs-api:0.1.0 .
-   
-   # For local architecture (if running locally)
-   docker build -t coolify-docker-test-nodejs-api:0.1.0 .
-   ```
+1. Tag your architecture-specific image:
+```bash
+# For ARM64
+docker tag coolify-docker-test-nodejs-api:arm64 YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:arm64
 
-2. Tag your image with both version and latest:
-   ```bash
-   # Tag with version number
-   docker tag coolify-docker-test-nodejs-api:0.1.0 YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:0.1.0
-   
-   # Tag as latest
-   docker tag coolify-docker-test-nodejs-api:0.1.0 YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:latest
-   ```
+# For AMD64
+docker tag coolify-docker-test-nodejs-api:amd64 YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:amd64
+```
 
-3. Login to Docker Hub:
-   ```bash
-   docker login
-   ```
+2. Push to Docker Hub:
+```bash
+# Push ARM64 version
+docker push YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:arm64
 
-4. Push both tags:
-   ```bash
-   # Push version tag
-   docker push YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:0.1.0
-   
-   # Push latest tag
-   docker push YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:latest
-   ```
+# Push AMD64 version
+docker push YOUR_DOCKERHUB_USERNAME/coolify-docker-test-nodejs-api:amd64
+```
 
 ### Platform Compatibility Notes
 
-- If you're building on an ARM-based machine (like M1/M2 Mac) and deploying to x86/amd64 servers, use the `--platform=linux/amd64` flag during build
-- For local development on ARM machines, you can omit the platform flag
-- Most cloud providers (including Coolify) typically use x86/amd64 architecture
-
-### Version History
-
-- 0.1.0: Initial release
-  - Basic API endpoints (/, /version)
-  - Detailed logging
-  - Docker support
-  - Coolify compatibility
+- Build the specific version that matches your deployment platform
+- For Coolify deployment, use the AMD64 version (amd64 tag)
+- For local development on ARM machines (M1/M2 Macs), use the ARM64 version (arm64 tag)
+- The image tag clearly indicates which architecture it supports
 
 ## Deploying to Coolify
 
